@@ -24,3 +24,4 @@ UPDATE `users` SET `grade` = FLOOR(RAND() * 41) + 60;
 SELECT `city`, AVG(`grade`) 'avg' FROM `users` GROUP BY `city`;
 
 -- כמות משתמשים לפי עיר
+SELECT `city`, COUNT(*) 'usersAmount' FROM `users` GROUP BY `city`;
