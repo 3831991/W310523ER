@@ -22,4 +22,9 @@ SELECT s.firstName, s.lastName, g.grade FROM test_grades AS g
 LEFT JOIN students AS s ON g.studentId = s.id
 ORDER BY g.grade ASC LIMIT 3;
 
--- חמשת הסטודנטים שקיבלו את הציון הגבוה
+-- חמשת הסטודנטים שקיבלו את הציון הגבוה. לשים עמודה של שם מלא
+SELECT CONCAT(s.firstName, ' ', s.lastName) AS fullName, g.grade FROM test_grades AS g
+LEFT JOIN students AS s ON g.studentId = s.id
+ORDER BY g.grade DESC LIMIT 5;
+
+-- כמות ציונים עוברים מכל עיר - (ציון עובר זה 70)
