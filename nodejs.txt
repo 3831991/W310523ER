@@ -1,6 +1,6 @@
 npm init -y
 npm install express --save
-
+npm i mysql2 --save
 
 
 // התקנה חד"פ גלובלית
