@@ -1,2 +1,7 @@
 npm init -y
 npm install express --save
+
+
+
+// התקנה חד"פ גלובלית
+npm i -g nodemon -D
