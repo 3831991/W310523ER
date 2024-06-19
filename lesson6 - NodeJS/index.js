@@ -83,3 +83,15 @@ app.get("/students/average-by-cites", (req, res) => {
         res.send(result);
     });
 });
+
+app.get("/students/:id", (req, res) => {
+    const { id } = req.params;
+
+    con.query(`SELECT * FROM students WHERE id = ?`, [id], (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result.pop());
+    });
+});
