@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors');
 const app = express();
 
 // יצירת הגדרות החיבור למסד הנתונים
@@ -19,6 +20,13 @@ con.connect(err => {
 
     console.log('Connecting to mysql');
 });
+
+app.use(cors({
+    origin: true,
+    methods: 'GET,PUT,POST,DELETE,OPTIONS',
+    credentials: true,
+    allowedHeaders: 'Content-Type, Accept',
+}));
 
 // הפעלת השרת והאזנה לפורט הנבחר
 app.listen(5000, () => {
@@ -87,7 +95,7 @@ app.get("/students/average-by-cites", (req, res) => {
 app.get("/students/:id", (req, res) => {
     const { id } = req.params;
 
-    con.query(`SELECT * FROM students WHERE id = ?`, [id], (err, result) => {
+    con.query("SELECT * FROM students WHERE id = ?", [id], (err, result) => {
         if (err) {
             throw err;
         }
