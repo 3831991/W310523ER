@@ -62,3 +62,13 @@ app.get("/students/average", (req, res) => {
         res.send(result);
     });
 });
+
+app.get("/students/average-by-cites", (req, res) => {
+    con.query(``, (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result);
+    });
+});
