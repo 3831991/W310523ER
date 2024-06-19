@@ -64,7 +64,18 @@ app.get("/students/average", (req, res) => {
 });
 
 app.get("/students/average-by-cites", (req, res) => {
-    con.query(``, (err, result) => {
+    con.query(`
+        SELECT
+            s.city,
+            AVG(tg.grade) AS AVG
+        FROM
+            students AS s
+        LEFT JOIN test_grades AS tg
+        ON
+            tg.studentId = s.id
+        GROUP BY
+            s.city
+    `, (err, result) => {
         if (err) {
             throw err;
         }
