@@ -9,6 +9,15 @@ body {
   background-color: #333;
 }
 
+.frame {
+  background-color: white;
+  max-width: 800px;
+  margin: auto;
+  border-radius: 6px;
+  min-height: 500px;
+  padding: 12px;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;

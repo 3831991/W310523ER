@@ -7,7 +7,7 @@ import StudentGrades from './StudentGrades';
 export default function Router() {
     return (
         <Routes>
-            <Route path="/" element={<p>ברוכים הבאים!</p>} />
+            <Route path="/" element={<div className="frame">ברוכים הבאים!</div>} />
             <Route path="/students" element={<Students />} />
             <Route path="/average" element={<Average />} />
             <Route path="/cites" element={<Cites />} />

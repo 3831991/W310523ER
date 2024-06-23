@@ -12,12 +12,33 @@ export default function StudentGrades() {
     }, [studentId]);
 
     return (
-        <div style={{ backgroundColor: 'white' }}>
+        <div className="frame">
             {
                 student &&
-                <h2>
-                    עריכת ציונים ל{student.firstName} {student.lastName}
-                </h2>
+                <div>
+                    <h2>עריכת ציונים ל{student.user.firstName} {student.user.lastName}</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>מבחן</th>
+                                <th>ציון</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                student.grades.map((s, i) => 
+                                    <tr key={s.id}>
+                                        <td>{i + 1}</td>
+                                        <td>{s.name}</td>
+                                        <td>{s.grade}</td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
             }
         </div>
     )

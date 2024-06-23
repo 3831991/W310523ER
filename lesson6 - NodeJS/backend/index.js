@@ -101,6 +101,17 @@ app.get("/students/:id", (req, res) => {
             throw err;
         }
 
-        res.send(result.pop());
+        const user = result.pop();
+
+        con.query("SELECT test_grades.id, tests.name, test_grades.grade FROM test_grades LEFT JOIN tests ON tests.id = test_grades.testId WHERE test_grades.studentId = ?", [id], (err, grades) => {
+            if (err) {
+                throw err;
+            }
+    
+            res.send({
+                user,
+                grades
+            });
+        });
     });
 });
