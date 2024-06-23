@@ -38,6 +38,5 @@ export default function Cites() {
                 }
             </tbody>
         </table>
-            
     )
 }
