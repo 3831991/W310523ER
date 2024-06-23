@@ -5,6 +5,7 @@
 }
 
 body {
+  direction: rtl;
   background-color: #333;
 }
 
@@ -18,7 +19,7 @@ table {
 
 th,
 td {
-  text-align: left;
+  text-align: center;
   padding: 16px;
 }
 
@@ -67,4 +68,16 @@ nav ul li a:hover {
 .max {
   font-weight: bold;
   color: blue;
+}
+
+.edit {
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.edit:hover {
+  scale: 1.6;
 }

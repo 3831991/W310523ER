@@ -52,6 +52,7 @@ app.get("/students", (req, res) => {
 app.get("/students/average", (req, res) => {
     con.query(`
         SELECT
+            s.id,
             s.firstName,
             s.lastName,
             AVG(tg.grade) AS average

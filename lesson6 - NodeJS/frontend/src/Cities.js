@@ -22,8 +22,8 @@ export default function Cites() {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>City</th>
-                    <th>Average</th>
+                    <th>עיר</th>
+                    <th>ממוצע</th>
                 </tr>
             </thead>
             <tbody>

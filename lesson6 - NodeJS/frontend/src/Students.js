@@ -15,11 +15,11 @@ export default function Students() {
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Phone</th>
-                    <th>City</th>
-                    <th>Birthday</th>
+                    <th>שם פרטי</th>
+                    <th>שם משפחה</th>
+                    <th>טלפון</th>
+                    <th>עיר</th>
+                    <th>תאריך לידה</th>
                 </tr>
             </thead>
             <tbody>
