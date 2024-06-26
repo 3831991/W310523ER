@@ -107,3 +107,32 @@ input::-webkit-inner-spin-button {
   padding: 4px;
   text-align: center;
 }
+
+button {
+  background-color: #62b53f;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+button:hover {
+  background-color: #70a958;
+}
+
+header.student {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #e4e4e4;
+  margin: -12px;
+  margin-bottom: 12px;
+  border-radius: 6px 6px 0 0;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+header.student h2 {
+  margin: 0;
+}

@@ -23,7 +23,10 @@ export default function StudentGrades() {
             {
                 student &&
                 <div>
-                    <h2>עריכת ציונים ל{student.user.firstName} {student.user.lastName}</h2>
+                    <header className="student">
+                        <h2>עריכת ציונים ל{student.user.firstName} {student.user.lastName}</h2>
+                        <button>שמור</button>
+                    </header>
 
                     <table>
                         <thead>
