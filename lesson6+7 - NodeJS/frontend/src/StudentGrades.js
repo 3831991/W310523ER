@@ -35,7 +35,7 @@ export default function StudentGrades() {
             body: JSON.stringify(data),
         })
         .then(() => {
-            
+
         });
     }
 

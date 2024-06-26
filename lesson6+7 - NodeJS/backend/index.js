@@ -3,6 +3,8 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
 
+app.use(express.json());
+
 // יצירת הגדרות החיבור למסד הנתונים
 const con = mysql.createConnection({
     host: 'localhost',
@@ -114,4 +116,15 @@ app.get("/students/:id", (req, res) => {
             });
         });
     });
+});
+
+app.put("/students/:studentId", (req, res) => {
+    const { studentId } = req.params;
+    const grades = req.body;
+
+    for (const g of grades) {
+        con.query("UPDATE test_grades SET grade = ? WHERE id = ? AND studentId = ?", [g.grade, g.id, studentId]);
+    }
+    
+    res.end();
 });
