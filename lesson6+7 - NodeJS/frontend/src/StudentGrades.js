@@ -11,6 +11,13 @@ export default function StudentGrades() {
         .then(data => setStudent(data));
     }, [studentId]);
 
+    function gradeChange(i, ev) {
+        const { value } = ev.target;
+
+        student.grades[i].grade = value;
+        setStudent({ ...student });
+    }
+
     return (
         <div className="frame">
             {
@@ -32,7 +39,7 @@ export default function StudentGrades() {
                                     <tr key={s.id}>
                                         <td>{i + 1}</td>
                                         <td>{s.name}</td>
-                                        <td>{s.grade}</td>
+                                        <td><input className="grade" type="number" value={s.grade} onChange={ev => gradeChange(i, ev)} /></td>
                                     </tr>
                                 )
                             }
