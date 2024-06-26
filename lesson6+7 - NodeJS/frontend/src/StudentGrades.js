@@ -6,24 +6,37 @@ export function duplicateObj(objectOrArray) {
 }
 
 export default function StudentGrades() {
-    let initialStudent;
     const { studentId } = useParams();
     const [student, setStudent] = useState();
+    const [initialStudent, setInitialStudent] = useState();
 
     useEffect(() => {
         fetch(`http://localhost:5000/students/${studentId}`)
         .then(res => res.json())
         .then(data => {
             setStudent(data);
-            initialStudent = duplicateObj(data);
+            setInitialStudent(duplicateObj(data));
         });
     }, [studentId]);
 
-    function gradeChange(i, ev) {
+    const gradeChange = (i, ev) => {
         const { value } = ev.target;
 
-        student.grades[i].grade = value;
+        student.grades[i].grade = +value;
         setStudent({ ...student });
+    }
+
+    const save = () => {
+        const data = student.grades.filter(g => initialStudent.grades.find(x => x.id === g.id).grade != g.grade);
+
+        fetch(`http://localhost:5000/students/${studentId}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+        })
+        .then(() => {
+            
+        });
     }
 
     return (
@@ -33,7 +46,7 @@ export default function StudentGrades() {
                 <div>
                     <header className="student">
                         <h2>עריכת ציונים ל{student.user.firstName} {student.user.lastName}</h2>
-                        <button className="save">שמור</button>
+                        <button className="save" onClick={save}>שמור</button>
                     </header>
 
                     <table>
