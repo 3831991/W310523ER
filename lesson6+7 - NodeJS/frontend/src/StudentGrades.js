@@ -7,6 +7,7 @@ export function duplicateObj(objectOrArray) {
 
 export default function StudentGrades() {
     const { studentId } = useParams();
+    const [loader, setLoader] = useState(true);
     const [student, setStudent] = useState();
     const [initialStudent, setInitialStudent] = useState();
 
@@ -16,6 +17,7 @@ export default function StudentGrades() {
         .then(data => {
             setStudent(data);
             setInitialStudent(duplicateObj(data));
+            setLoader(false);
         });
     }, [studentId]);
 
@@ -28,6 +30,7 @@ export default function StudentGrades() {
 
     const save = () => {
         const data = student.grades.filter(g => initialStudent.grades.find(x => x.id === g.id).grade != g.grade);
+        setLoader(true);
 
         fetch(`http://localhost:5000/students/${studentId}`, {
             method: 'PUT',
@@ -35,12 +38,20 @@ export default function StudentGrades() {
             body: JSON.stringify(data),
         })
         .then(() => {
-
+            setLoader(false);
+            setInitialStudent(duplicateObj(student));
         });
     }
 
     return (
         <div className="frame">
+            {
+                loader &&
+                <div className="loaderFrame">
+                    <div className="loader"></div>
+                </div>
+            }
+
             {
                 student &&
                 <div>

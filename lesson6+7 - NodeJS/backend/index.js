@@ -5,6 +5,11 @@ const app = express();
 
 app.use(express.json());
 
+// הוספת איטיות בשרת
+app.use((req, res, next) => {
+    setTimeout(next, 500);
+});
+
 // יצירת הגדרות החיבור למסד הנתונים
 const con = mysql.createConnection({
     host: 'localhost',
