@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+export function duplicateObj(objectOrArray) {
+    return JSON.parse(JSON.stringify(objectOrArray));
+}
+
 export default function StudentGrades() {
+    let initialStudent;
     const { studentId } = useParams();
     const [student, setStudent] = useState();
 
     useEffect(() => {
         fetch(`http://localhost:5000/students/${studentId}`)
         .then(res => res.json())
-        .then(data => setStudent(data));
+        .then(data => {
+            setStudent(data);
+            initialStudent = duplicateObj(data);
+        });
     }, [studentId]);
 
     function gradeChange(i, ev) {
@@ -25,7 +33,7 @@ export default function StudentGrades() {
                 <div>
                     <header className="student">
                         <h2>עריכת ציונים ל{student.user.firstName} {student.user.lastName}</h2>
-                        <button>שמור</button>
+                        <button className="save">שמור</button>
                     </header>
 
                     <table>

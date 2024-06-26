@@ -108,7 +108,7 @@ input::-webkit-inner-spin-button {
   text-align: center;
 }
 
-button {
+button.save {
   background-color: #62b53f;
   color: white;
   padding: 8px 12px;
@@ -116,7 +116,7 @@ button {
   border: none;
 }
 
-button:hover {
+button.save:hover {
   background-color: #70a958;
 }
 
