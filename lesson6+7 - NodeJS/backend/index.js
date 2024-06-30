@@ -105,7 +105,7 @@ app.get("/tests", (req, res) => {
         SELECT
             t.id,
             t.name,
-            AVG(tg.grade)
+            AVG(tg.grade) AS avg
         FROM
             tests AS t
         LEFT JOIN test_grades AS tg
