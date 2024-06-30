@@ -132,7 +132,7 @@ app.get("/students/:id", (req, res) => {
 
         const user = result.pop();
 
-        con.query("SELECT test_grades.id, tests.name, test_grades.grade FROM test_grades LEFT JOIN tests ON tests.id = test_grades.testId WHERE test_grades.studentId = ?", [id], (err, grades) => {
+        con.query("SELECT test_grades.id, tests.id AS testId, tests.name, test_grades.grade FROM test_grades LEFT JOIN tests ON tests.id = test_grades.testId WHERE test_grades.studentId = ?", [id], (err, grades) => {
             if (err) {
                 throw err;
             }

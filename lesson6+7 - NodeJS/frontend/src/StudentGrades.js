@@ -63,6 +63,8 @@ export default function StudentGrades() {
                             <button className="save" onClick={save}>שמור</button>
                         </header>
 
+                        <button className="save">הוספת ציון</button><br/><br/>
+
                         <table>
                             <thead>
                                 <tr>
@@ -85,8 +87,24 @@ export default function StudentGrades() {
                         </table>
                     </div>
                 </div>
-
             }
+
+            <div className="modal-frame">
+                <div className="modal">
+                    <header>
+                        <h2>רישום למבחן</h2>
+                    </header>
+
+                    <select>
+                        <option value=""></option>
+                        {
+                            tests.filter(t => !student.grades.map(g => g.testId).includes(t.id)).map(t => 
+                                <option key={t.id} value={t.id}>{t.name}</option>    
+                            )
+                        }
+                    </select>
+                </div>
+            </div>
         </>
     )
 }
