@@ -3,11 +3,12 @@ import Students from './Students';
 import Average from './Average';
 import Cites from './Cities';
 import StudentGrades from './StudentGrades';
+import Dashboard from './Dashboard';
 
 export default function Router() {
     return (
         <Routes>
-            <Route path="/" element={<div className="frame">ברוכים הבאים!</div>} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/students" element={<Students />} />
             <Route path="/average" element={<Average />} />
             <Route path="/cites" element={<Cites />} />

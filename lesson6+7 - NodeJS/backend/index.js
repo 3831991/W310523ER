@@ -133,3 +133,13 @@ app.put("/students/:studentId", (req, res) => {
     
     res.end();
 });
+
+app.get("/dashboard/students/amount", (req, res) => {
+    con.query("SELECT COUNT(*) amount FROM students", (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result.pop());
+    });
+});
