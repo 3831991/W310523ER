@@ -48,23 +48,17 @@ export default function Dashboard() {
 
                         <div className='card'>
                             <header>ממוצע ציונים</header>
-                            <div>{data[3]}</div>
+                            <div>{Math.round(data[3])}</div>
                         </div>
 
                         <div className='card'>
-                            <header>תלמיד מצטיין</header>
-                            <div>
-                                {data[4].firstName} {data[4].lastName}
-                                <br /><small>({data[4].grade})</small>
-                            </div>
+                            <header>תלמיד מצטיין ({Math.round(data[4].grade)})</header>
+                            <div>{data[4].firstName} {data[4].lastName}</div>
                         </div>
 
                         <div className='card'>
-                            <header>עיר מצטיינת</header>
-                            <div>
-                                {data[5].city}
-                                <br /><small>({data[5].grade})</small>
-                            </div>
+                            <header>עיר מצטיינת ({Math.round(data[5].grade)})</header>
+                            <div>{data[5].city}</div>
                         </div>
 
                         <div className='card'>

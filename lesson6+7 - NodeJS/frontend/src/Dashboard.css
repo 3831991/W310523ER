@@ -41,6 +41,6 @@
     flex-direction: column;
 }
 
-small {
-    font-size: 16px;
+.Dashboard ul {
+    text-align: right;
 }
