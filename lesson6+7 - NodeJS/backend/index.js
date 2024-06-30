@@ -173,3 +173,37 @@ app.get("/dashboard/tests/avg", (req, res) => {
         res.send(result[0].avg.toString());
     });
 });
+
+app.get("/dashboard/students/the-best", (req, res) => {
+    con.query(`
+        SELECT s.firstName, s.lastName, AVG(tg.grade) grade
+        FROM test_grades AS tg
+        LEFT JOIN students AS s
+        ON s.id = tg.studentId
+        GROUP BY s.id
+        ORDER BY grade DESC LIMIT 1
+    `, (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result.pop());
+    });
+});
+
+app.get("/dashboard/cities/the-best", (req, res) => {
+    con.query(`
+        SELECT s.city, AVG(tg.grade) grade
+        FROM test_grades AS tg
+        LEFT JOIN students AS s
+        ON s.id = tg.studentId
+        GROUP BY s.city
+        ORDER BY grade DESC LIMIT 1
+    `, (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result.pop());
+    });
+});
