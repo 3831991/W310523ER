@@ -207,3 +207,22 @@ app.get("/dashboard/cities/the-best", (req, res) => {
         res.send(result.pop());
     });
 });
+
+app.get("/dashboard/students/birthday", (req, res) => {
+    con.query(`
+        SELECT
+            firstName,
+            lastName,
+            TIMESTAMPDIFF(YEAR, birthday, CURDATE()) AS age
+        FROM
+            students
+        WHERE
+            MONTH(birthday) = MONTH(CURRENT_DATE);
+    `, (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result.pop());
+    });
+});
