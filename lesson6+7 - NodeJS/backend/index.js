@@ -140,6 +140,36 @@ app.get("/dashboard/students/amount", (req, res) => {
             throw err;
         }
 
-        res.send(result.pop());
+        res.send(result[0].amount.toString());
+    });
+});
+
+app.get("/dashboard/cities/amount", (req, res) => {
+    con.query("SELECT COUNT(DISTINCT city) amount FROM students", (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result[0].amount.toString());
+    });
+});
+
+app.get("/dashboard/tests/amount", (req, res) => {
+    con.query("SELECT COUNT(*) amount FROM tests", (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result[0].amount.toString());
+    });
+});
+
+app.get("/dashboard/tests/avg", (req, res) => {
+    con.query("SELECT AVG(grade) avg FROM test_grades", (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result[0].avg.toString());
     });
 });
