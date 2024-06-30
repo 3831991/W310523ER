@@ -100,6 +100,28 @@ app.get("/students/average-by-cites", (req, res) => {
     });
 });
 
+app.get("/tests", (req, res) => {
+    con.query(`
+        SELECT
+            t.id,
+            t.name,
+            AVG(tg.grade)
+        FROM
+            tests AS t
+        LEFT JOIN test_grades AS tg
+        ON
+            t.id = tg.testId
+        GROUP BY
+            t.id
+    `, (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(result);
+    });
+});
+
 app.get("/students/:id", (req, res) => {
     const { id } = req.params;
 

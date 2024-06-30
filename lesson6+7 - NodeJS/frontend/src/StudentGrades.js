@@ -10,18 +10,23 @@ export default function StudentGrades() {
     const { studentId } = useParams();
     const [student, setStudent] = useState();
     const [initialStudent, setInitialStudent] = useState();
+    const [tests, setTests] = useState([]);
     const { setLoading } = useContext(GeneralContext);
 
     useEffect(() => {
         setLoading(true);
 
         fetch(`http://localhost:5000/students/${studentId}`)
-            .then(res => res.json())
-            .then(data => {
-                setStudent(data);
-                setInitialStudent(duplicateObj(data));
-            })
-            .finally(() => setLoading(false));
+        .then(res => res.json())
+        .then(data => {
+            setStudent(data);
+            setInitialStudent(duplicateObj(data));
+        })
+        .finally(() => setLoading(false));
+
+        fetch(`http://localhost:5000/tests`)
+        .then(res => res.json())
+        .then(data => setTests(data));
     }, [studentId, setLoading]);
 
     const gradeChange = (i, ev) => {
