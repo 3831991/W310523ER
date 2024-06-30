@@ -211,6 +211,7 @@ app.get("/dashboard/cities/the-best", (req, res) => {
 app.get("/dashboard/students/birthday", (req, res) => {
     con.query(`
         SELECT
+            id,
             firstName,
             lastName,
             TIMESTAMPDIFF(YEAR, birthday, CURDATE()) AS age
@@ -223,6 +224,6 @@ app.get("/dashboard/students/birthday", (req, res) => {
             throw err;
         }
 
-        res.send(result.pop());
+        res.send(result);
     });
 });
