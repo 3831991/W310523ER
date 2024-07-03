@@ -95,17 +95,28 @@ export default function StudentGrades() {
                 <div className="modal-frame">
                     <div className="modal">
                         <header>
+                            <button className="close" onClick={() => setIsModal(false)}>x</button>
                             <h2>רישום למבחן</h2>
                         </header>
 
-                        <select>
-                            <option value=""></option>
-                            {
-                                tests.filter(t => !student?.grades.map(g => g.testId).includes(t.id)).map(t => 
-                                    <option key={t.id} value={t.id}>{t.name}</option>    
-                                )
-                            }
-                        </select>
+                        <section>
+                            <label>מבחן:</label>
+                            <select>
+                                <option value=""></option>
+                                {
+                                    tests.filter(t => !student?.grades.map(g => g.testId).includes(t.id)).map(t => 
+                                        <option key={t.id} value={t.id}>{t.name}</option>    
+                                    )
+                                }
+                            </select>
+
+                            <label>ציון:</label>
+                            <input className="gradeModal" type="number" max={100} min={0} />
+                        </section>
+
+                        <footer>
+                            <button className="save">הוסף</button>
+                        </footer>
                     </div>
                 </div>
             }

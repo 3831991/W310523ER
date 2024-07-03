@@ -197,13 +197,14 @@ header.student h2 {
   color: #282c34;
   text-align: center;
   padding: 8px;
+  margin: 0;
 }
 
 .modal form {
   padding: 24px;
 }
 
-select {
+select, input.gradeModal {
   display: block;
   border: 1px solid black;
   padding: 8px 12px;
@@ -221,4 +222,31 @@ select {
   100% {
       transform: translateY(100px);
   }
+}
+
+.close {
+  background: none;
+  border: 0;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0 8px;
+}
+
+.close:hover {
+  scale: 1.1;
+}
+
+.modal section {
+  padding: 8px 24px;
+}
+
+.modal label {
+  display: block;
+  margin-top: 20px;
+}
+
+.modal footer {
+  text-align: left;
+  padding: 24px;
 }
