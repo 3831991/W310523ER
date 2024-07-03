@@ -172,7 +172,7 @@ app.post("/students/test", (req, res) => {
     });
 });
 
-app.post("/students/:studentId/test/:testId", (req, res) => {
+app.delete("/students/:studentId/test/:testId", (req, res) => {
     const { studentId, testId } = req.params;
 
     con.query("DELETE FROM test_grades WHERE id = ? AND studentId = ?", [testId, studentId], (err, result) => {

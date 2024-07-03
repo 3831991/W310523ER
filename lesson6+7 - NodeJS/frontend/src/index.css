@@ -250,3 +250,14 @@ select, input.gradeModal {
   text-align: left;
   padding: 24px;
 }
+
+.remove {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.remove:hover {
+  scale: 1.2;
+}

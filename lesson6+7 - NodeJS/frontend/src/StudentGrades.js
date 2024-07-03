@@ -98,6 +98,27 @@ export default function StudentGrades() {
         .finally(() => setLoading(false));
     }
 
+    const remove = (testId, index) => {
+        if (!window.confirm('Are you sure you want to remove this test?')) {
+            return;
+        }
+
+        setLoading(true);
+
+        fetch(`http://localhost:5000/students/${studentId}/test/${testId}`, {
+            method: 'DELETE',
+        })
+        .then(() => {
+            setLoading(false);
+
+            student.grades.splice(index, 1);
+            setStudent({ ...student });
+
+            initialStudent.grades.splice(index, 1);
+            setInitialStudent({ ...initialStudent });
+        });
+    }
+
     return (
         <>
             {
@@ -118,6 +139,7 @@ export default function StudentGrades() {
                                     <th>#</th>
                                     <th>מבחן</th>
                                     <th>ציון</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -127,6 +149,7 @@ export default function StudentGrades() {
                                             <td>{i + 1}</td>
                                             <td>{s.name}</td>
                                             <td><input className="grade" type="number" value={s.grade} onChange={ev => gradeChange(i, ev)} /></td>
+                                            <td><button className="remove" onClick={() => remove(s.id, i)}>❌</button></td>
                                         </tr>
                                     )
                                 }
