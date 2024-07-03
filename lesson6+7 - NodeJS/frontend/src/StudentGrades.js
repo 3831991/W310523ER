@@ -12,6 +12,10 @@ export default function StudentGrades() {
     const [initialStudent, setInitialStudent] = useState();
     const [tests, setTests] = useState([]);
     const [isModal, setIsModal] = useState(false);
+    const [newTest, setNewTest] = useState({
+        testId: '',
+        grade: '',
+    });
     const { setLoading } = useContext(GeneralContext);
 
     useEffect(() => {
@@ -50,6 +54,19 @@ export default function StudentGrades() {
                 setLoading(false);
                 setInitialStudent(duplicateObj(student));
             });
+    }
+
+    const handelChange = ev => {
+        const { value, name } = ev.target;
+
+        setNewTest({
+            ...newTest,
+            [name]: value,
+        });
+    }
+
+    const add = () => {
+
     }
 
     return (
@@ -101,21 +118,21 @@ export default function StudentGrades() {
 
                         <section>
                             <label>מבחן:</label>
-                            <select>
+                            <select value={newTest.testId} name="testId" onChange={handelChange}>
                                 <option value=""></option>
                                 {
-                                    tests.filter(t => !student?.grades.map(g => g.testId).includes(t.id)).map(t => 
+                                    tests.filter(t => !student.grades.map(g => g.testId).includes(t.id)).map(t => 
                                         <option key={t.id} value={t.id}>{t.name}</option>    
                                     )
                                 }
                             </select>
 
                             <label>ציון:</label>
-                            <input className="gradeModal" type="number" max={100} min={0} />
+                            <input className="gradeModal" type="number" max={100} min={0} value={newTest.grade} name="grade" onChange={handelChange} />
                         </section>
 
                         <footer>
-                            <button className="save">הוסף</button>
+                            <button className="save" onClick={add}>הוסף</button>
                         </footer>
                     </div>
                 </div>
