@@ -172,6 +172,18 @@ app.post("/students/test", (req, res) => {
     });
 });
 
+app.post("/students/:studentId/test/:testId", (req, res) => {
+    const { studentId, testId } = req.params;
+
+    con.query("DELETE FROM test_grades WHERE id = ? AND studentId = ?", [testId, studentId], (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.end();
+    });
+});
+
 app.get("/dashboard/students/amount", (req, res) => {
     con.query("SELECT COUNT(*) amount FROM students", (err, result) => {
         if (err) {
