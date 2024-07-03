@@ -50,10 +50,10 @@ export default function StudentGrades() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         })
-            .then(() => {
-                setLoading(false);
-                setInitialStudent(duplicateObj(student));
-            });
+        .then(() => {
+            setLoading(false);
+            setInitialStudent(duplicateObj(student));
+        });
     }
 
     const handelChange = ev => {
@@ -66,7 +66,32 @@ export default function StudentGrades() {
     }
 
     const add = () => {
+        setLoading(true);
 
+        const obj = {
+            ...newTest,
+            studentId,
+        };
+
+        fetch(`http://localhost:5000/students/test`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(obj),
+        })
+        .then(data => {
+            // הוספת האובייקט החדש למערך
+            student.grades.push(data);
+            // עדכון הסטייט
+            setStudent({ ...student });
+
+            // עדכון הנתונים הראשוניים
+            initialStudent.grades.push(duplicateObj(data));
+            setInitialStudent({ ...initialStudent });
+
+            // סגירת החלונית
+            setIsModal(false);
+        })
+        .finally(() => setLoading(false));
     }
 
     return (
