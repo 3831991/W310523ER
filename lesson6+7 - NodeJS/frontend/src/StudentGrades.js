@@ -81,8 +81,8 @@ export default function StudentGrades() {
         .then(res => res.json())
         .then(data => {
             const test = tests.find(t => t.id === +data.testId);
-
             data.name = test?.name || '';
+
             // הוספת האובייקט החדש למערך
             student.grades.push(data);
             // עדכון הסטייט
