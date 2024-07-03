@@ -166,7 +166,6 @@ app.post("/students/test", (req, res) => {
 
         res.send({
             id: result.insertId,
-            studentId: +studentId,
             testId: +testId,
             grade: +grade,
         })
