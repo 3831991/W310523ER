@@ -78,7 +78,11 @@ export default function StudentGrades() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(obj),
         })
+        .then(res => res.json())
         .then(data => {
+            const test = tests.find(t => t.id === +data.testId);
+
+            data.name = test?.name || '';
             // הוספת האובייקט החדש למערך
             student.grades.push(data);
             // עדכון הסטייט

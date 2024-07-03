@@ -156,6 +156,23 @@ app.put("/students/:studentId", (req, res) => {
     res.end();
 });
 
+app.post("/students/test", (req, res) => {
+    const { studentId, testId, grade } = req.body;
+
+    con.query("INSERT INTO test_grades(testId, studentId, grade) VALUES (?, ?, ?)", [testId, studentId, grade], (err, result) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send({
+            id: result.insertId,
+            studentId: +studentId,
+            testId: +testId,
+            grade: +grade,
+        })
+    });
+});
+
 app.get("/dashboard/students/amount", (req, res) => {
     con.query("SELECT COUNT(*) amount FROM students", (err, result) => {
         if (err) {
