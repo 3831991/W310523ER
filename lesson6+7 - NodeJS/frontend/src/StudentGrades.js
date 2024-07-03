@@ -11,6 +11,7 @@ export default function StudentGrades() {
     const [student, setStudent] = useState();
     const [initialStudent, setInitialStudent] = useState();
     const [tests, setTests] = useState([]);
+    const [isModal, setIsModal] = useState(false);
     const { setLoading } = useContext(GeneralContext);
 
     useEffect(() => {
@@ -63,7 +64,7 @@ export default function StudentGrades() {
                             <button className="save" onClick={save}>שמור</button>
                         </header>
 
-                        <button className="save">הוספת ציון</button><br/><br/>
+                        <button className="save" onClick={() => setIsModal(true)}>הוספת ציון</button><br/><br/>
 
                         <table>
                             <thead>
@@ -89,22 +90,25 @@ export default function StudentGrades() {
                 </div>
             }
 
-            <div className="modal-frame">
-                <div className="modal">
-                    <header>
-                        <h2>רישום למבחן</h2>
-                    </header>
+            {
+                isModal &&
+                <div className="modal-frame">
+                    <div className="modal">
+                        <header>
+                            <h2>רישום למבחן</h2>
+                        </header>
 
-                    <select>
-                        <option value=""></option>
-                        {
-                            tests.filter(t => !student.grades.map(g => g.testId).includes(t.id)).map(t => 
-                                <option key={t.id} value={t.id}>{t.name}</option>    
-                            )
-                        }
-                    </select>
+                        <select>
+                            <option value=""></option>
+                            {
+                                tests.filter(t => !student?.grades.map(g => g.testId).includes(t.id)).map(t => 
+                                    <option key={t.id} value={t.id}>{t.name}</option>    
+                                )
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
+            }
         </>
     )
 }
