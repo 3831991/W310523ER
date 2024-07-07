@@ -2,6 +2,18 @@ npm init -y
 npm install express --save
 npm i mysql2 --save
 
+// כל ההתקנות ביחד
+npm install express mysql2 cors moment fs --save
 
 // התקנה חד"פ גלובלית
 npm i -g nodemon -D
+
+//**** לצורך עבודה עם ES6 ****//
+// חד"פ
+npm install -g express-generator
+
+\\ הוספה לקובץ package.json
+"type": "module",
+
+// שינוי הקבצים סיומות הקבצים
+.mjs
