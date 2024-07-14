@@ -68,3 +68,8 @@ form button {
     color: white;
     margin-top: 6px;
 }
+
+form button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8
+}

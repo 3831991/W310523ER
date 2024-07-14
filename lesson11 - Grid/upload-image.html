@@ -13,6 +13,7 @@
 
             if (!file) {
                 document.getElementById("img").src = '';
+                document.querySelector("form button").disabled = true;
                 return;
             }
 
@@ -20,6 +21,7 @@
 
             reader.onload = e => {
                 document.getElementById("img").src = e.target.result;
+                document.querySelector("form button").disabled = false;
             }
 
             reader.readAsDataURL(file);
@@ -32,7 +34,7 @@
         <h1>העלאת קובץ</h1>
         <input type="file" name="file" onchange="imageChange(event)">
         <img id="img" width="100%">
-        <button>העלאה</button>
+        <button disabled>העלאה</button>
     </form>
 </body>
 
