@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <form action="http://localhost:4444/files/upload">
+    <form action="http://localhost:4444/files/upload" enctype="multipart/form-data">
         <h1>העלאת קובץ</h1>
         <input type="file" name="file" onchange="imageChange(event)">
         <img id="img" width="100%">
