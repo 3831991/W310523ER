@@ -6,12 +6,32 @@
     <meta charset="utf-8">
     <title>העלאת תמונה</title>
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        function imageChange(ev) {
+            const [file] = ev.target.files;
+
+            if (!file) {
+                document.getElementById("img").src = '';
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = e => {
+                document.getElementById("img").src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        }
+    </script>
 </head>
 
 <body>
     <form action="http://localhost:4444/files/upload">
         <h1>העלאת קובץ</h1>
-        <input type="file" name="file">
+        <input type="file" name="file" onchange="imageChange(event)">
+        <img id="img" width="100%">
         <button>העלאה</button>
     </form>
 </body>
