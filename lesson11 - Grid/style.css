@@ -10,6 +10,30 @@ body {
     /* background-image: url(http://localhost:4444/files/20200816_184358.jpg); */
     background-size: cover;
     background-position: center;
+    transition: 0.3s;
+}
+
+.img:hover {
+    scale: 1.05;
+}
+
+button.remove {
+    background: #FF5722;
+    color: white;
+    border: 0;
+    border-radius: 0 0 0 8px;
+    font-size: 18px;
+    padding: 3px 7px;
+    cursor: pointer;
+    display: none;
+}
+
+button.remove:hover {
+    box-shadow: 0 0 3px black;
+}
+
+.img:hover .remove {
+    display: initial;
 }
 
 #grid {
@@ -72,4 +96,14 @@ form button {
 form button:disabled {
     cursor: not-allowed;
     opacity: 0.8
+}
+
+a {
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: inline-block;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }

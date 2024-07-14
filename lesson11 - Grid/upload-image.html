@@ -26,12 +26,28 @@
 
             reader.readAsDataURL(file);
         }
+
+        function send(ev) {
+            ev.preventDefault();
+
+            const data = new FormData();
+            data.append('lernerImage', ev.target.elements.lernerImage.files[0]);
+
+            fetch('http://localhost:4444/files/upload', {
+                method: 'POST',
+                body: data,
+            })
+            .then(() => {
+                location.href = './';
+            });
+        }
     </script>
 </head>
 
 <body>
-    <form action="http://localhost:4444/files/upload" method="post" enctype="multipart/form-data">
-        <h1>העלאת קובץ</h1>
+    <!-- <form action="http://localhost:4444/files/upload" method="post" enctype="multipart/form-data" onsubmit="send(event)"> -->
+    <form onsubmit="send(event)">
+        <h1>העלאת תמונה</h1>
         <input type="file" name="lernerImage" onchange="imageChange(event)">
         <img id="img" width="100%">
         <button disabled>העלאה</button>

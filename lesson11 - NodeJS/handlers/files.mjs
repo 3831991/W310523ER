@@ -34,9 +34,7 @@ app.post('/files/upload', (req, res) => {
                 console.log(err);
             }
 
-            res.send({
-                message: "יופי טופי",
-            });
+            res.end();
         });
     });
 });
