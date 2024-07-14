@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+}
+
+.img {
+    height: 200px;
+    width: 100%;
+    background-color: #a4a4a4;
+    /* background-image: url(http://localhost:4444/files/20200816_184358.jpg); */
+    background-size: cover;
+    background-position: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+@media (max-width: 1200px) {
+    #grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1000px) {
+    #grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    #grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
