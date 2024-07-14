@@ -10,6 +10,17 @@ fetch("http://localhost:4444/files")
         btn.innerText = 'x';
         btn.className = "remove";
 
+        btn.addEventListener("click", () => {
+            if (!confirm("האם למחוק את התמונה?")) {
+                return;
+            }
+
+            fetch(`http://localhost:4444/files/${imgUrl}`, {
+                method: "DELETE",
+            })
+            .then(() => div.remove());
+        });
+
         div.appendChild(btn);
 
         document.querySelector("#grid").appendChild(div);

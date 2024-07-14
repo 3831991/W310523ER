@@ -38,3 +38,13 @@ app.post('/files/upload', (req, res) => {
         });
     });
 });
+
+app.delete("/files/:fileName", (req, res) => {
+    fs.unlink(`./files/${req.params.fileName}`, err => {
+        if (err) {
+            console.log(err);
+        }
+
+        res.end();
+    });
+});
