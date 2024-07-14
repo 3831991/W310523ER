@@ -1,5 +1,6 @@
 body {
     background-color: black;
+    direction: rtl;
 }
 
 .img {
@@ -33,4 +34,37 @@ body {
     #grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+form {
+    background: white;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+form h1 {
+    margin: 0;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+form input {
+    padding: 8px;
+    border: 1px solid #a7a7a7;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+form button {
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 0;
+    background: #286a6c;
+    color: white;
+    margin-top: 6px;
 }
