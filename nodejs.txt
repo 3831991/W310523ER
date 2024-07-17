@@ -1,9 +1,7 @@
 npm init -y
-npm install express --save
-npm i mysql2 --save
 
 // כל ההתקנות ביחד
-npm install express cors moment fs --save
+npm install express cors mongoose moment fs --save
 
 // התקנה חד"פ גלובלית
 npm i -g nodemon -D

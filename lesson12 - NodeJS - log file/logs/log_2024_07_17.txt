@@ -6,3 +6,11 @@ Method: GET
 Route: /hello
 Time: 17/07/2024 18:31:28
 
+Method: GET
+Route: /hello
+Time: 17/07/2024 18:45:05
+
+Method: GET
+Route: /
+Time: 17/07/2024 18:45:07
+
