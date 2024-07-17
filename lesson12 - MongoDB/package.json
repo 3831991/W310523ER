@@ -5,6 +5,7 @@
   "main": "app.mjs",
   "type": "module",
   "scripts": {
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
