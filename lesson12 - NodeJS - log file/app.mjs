@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import fs, { fdatasync } from 'fs';
+import fs from 'fs';
 import moment from 'moment';
 
 const app = express();
