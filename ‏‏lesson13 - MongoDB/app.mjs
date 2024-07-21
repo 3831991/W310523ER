@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors({
     origin: true,
     credentials: true,
-    methods: 'GET,PUT,POST,DELETE',
+    methods: 'GET,PUT,POST,PATCH,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Accept, Authorization',
 }));
 
@@ -29,3 +29,4 @@ app.get('/', (req, res) => {
 });
 
 import("./handlers/users/users.mjs");
+import("./handlers/users/auth.mjs");
