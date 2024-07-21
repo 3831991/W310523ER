@@ -46,6 +46,11 @@ app.put("/users/:id", async (req, res) => {
     res.send(user);
 });
 
+app.delete("/users/:id", async (req, res) => {
+    await User.findByIdAndDelete(req.params.id);
+    res.end();
+});
+
 // שיטה נוספת ויותר נוחה (בהמלצת מיכאל וריאן)
 // app.put("/users/:id", async (req, res) => {
 //     const { firstName, lastName, email, phone } = req.body;
