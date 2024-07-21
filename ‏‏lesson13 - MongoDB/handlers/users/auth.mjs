@@ -11,8 +11,11 @@ app.post("/login", async (req, res) => {
         return res.status(403).send("email or password is incorrect");
     }
 
-    if (!user.password || user.password !== password) {
-
+    // היות ולא לכולם יש סיסמה, אם אין סיסמה זה נופל באימות
+    // משווים בין הסיסמה שקיבלנו מהלקוח לסיסמה המוצפנת שבמסד הנתונים
+    // (הסדר משמעותי: קודם כל הסיסמה הלא-מוצפנת)
+    if (!user.password || !await bcrypt.compare(password, user.password)) {
+        return res.status(403).send("email or password is incorrect");
     }
 
     res.send(user);
