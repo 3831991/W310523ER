@@ -69,9 +69,9 @@ export default function Login() {
                 </form>
             </div>
 
-            <p className="signup">
+            {/* <p className="signup">
                 <Link to="/signup">להרשמה לחץ כאן</Link>
-            </p>
+            </p> */}
         </>
     )
 }
