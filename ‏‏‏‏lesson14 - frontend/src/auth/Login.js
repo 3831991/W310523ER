@@ -28,7 +28,7 @@ export default function Login() {
         if (res.ok) {
             const user = await res.json();
 
-            console.log(user)
+            setUser(user);
         } else {
             setLoginError(await res.text());
         }

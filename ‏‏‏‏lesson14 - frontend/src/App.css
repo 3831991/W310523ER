@@ -76,7 +76,7 @@ h1 {
   }
   
   .user {
-    margin: -16px auto 10px auto;
+    margin: 20px auto;
     width: 90%;
     max-width: fit-content;
     min-width: 800px;

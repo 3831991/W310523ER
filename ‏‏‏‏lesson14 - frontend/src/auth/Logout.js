@@ -5,23 +5,18 @@ import { GeneralContext } from '../App';
 
 export default function Logout() {
     const navigate = useNavigate();
-    const { setLoading, snackbar, setUser, user } = useContext(GeneralContext);
+    const { setLoading, setUser, user } = useContext(GeneralContext);
 
-    const logout = () => {
-        localStorage.clear('token');
+    const logout = async () => {
+        setLoading(true);
+
+        await fetch("http://localhost:8989/logout", {
+            credentials: 'include',
+        });
+
         setUser();
         navigate('/');
-        snackbar('המשתמש התנתק בהצלחה');
-
-        // fetch("https://api.shipap.co.il/logout", {
-        //     credentials: 'include',
-        // })
-        // .then(() => {
-        //     setUser();
-        //     navigate('/');
-        //     setLoading(false);
-        //     snackbar('המשתמש התנתק בהצלחה');
-        // });
+        setLoading(false);
     }
 
     return (
