@@ -1,263 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;600;700;900&display=swap');
 
-* {
-  font-family: "Arimo", sans-serif;
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
   direction: rtl;
-  background-color: #333;
+  padding-bottom: 200px;
+  background-color: #282c34;
 }
 
-.frame {
-  background-color: white;
-  max-width: 800px;
-  margin: auto;
-  border-radius: 6px;
-  min-height: 500px;
-  padding: 12px;
+* {
+  font-family: 'Rubik', sans-serif !important;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 1px solid #ddd;
-  margin: auto;
-  background-color: white;
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 0;
+  margin: 0px;
 }
 
-th,
-td {
-  text-align: center;
-  padding: 16px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-
-:root {
-  --bg: #2782a0;
-}
-
-nav {
-  background-color: var(--bg);
-  margin: -8px -16px 16px;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-nav ul li {
-  display: inline;
-}
-
-nav ul li a {
-  display: inline-block;
-  padding: 12px;
+button {
+  background-color: #d2009e;
   color: white;
-  text-decoration: none;
-  font-size: 1.3em;
-  background-color: var(--bg);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  margin-right: 8px;
 }
 
-nav ul li a:hover {
+button:hover {
   filter: brightness(1.2);
 }
 
-.min {
-  font-weight: bold;
-  color: red;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.max {
-  font-weight: bold;
-  color: blue;
-}
-
-.edit {
-  border: none;
-  background: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.1s;
-}
-
-.edit:hover {
-  scale: 1.6;
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.grade {
-  width: 35px;
-  font-size: 18px;
-  border: none;
-  background: none;
-  border-bottom: 1px solid #607D8B;
-  padding: 4px;
-  text-align: center;
-}
-
-button.save {
-  background-color: #62b53f;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: none;
-}
-
-button.save:hover {
-  background-color: #70a958;
-}
-
-header.student {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 12px;
-  background: #e4e4e4;
-  margin: -12px;
-  margin-bottom: 12px;
-  border-radius: 6px 6px 0 0;
-  align-items: center;
-  position: sticky;
-  top: 0;
-}
-
-header.student h2 {
-  margin: 0;
-}
-
-.loaderFrame {
-  position: fixed;
-  z-index: 999;
-  background-color: #000000d1;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loader {
-  border: 16px solid #5e5e5e;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-.modal-frame {
-  background-color: #00000098;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.modal {
-  position: relative;
-  width: 80%;
-  max-width: 400px;
-  min-height: 300px;
-  background-color: white;
-  box-shadow: 0 0 6px black;
-  border-radius: 5px;
-  margin: auto;
-  animation: slide-bottom 0.555s cubic-bezier(.25,.46,.45,.94) both;
-}
-
-.modal h2 {
-  color: #282c34;
-  text-align: center;
-  padding: 8px;
-  margin: 0;
-}
-
-.modal form {
-  padding: 24px;
-}
-
-select, input.gradeModal {
-  display: block;
+input,
+select {
   border: 1px solid black;
   padding: 8px 12px;
   border-radius: 5px;
   margin-top: 3px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-@keyframes slide-bottom {
-  0% {
-      transform: translateY(-200px);
-  }
-
-  100% {
-      transform: translateY(100px);
-  }
-}
-
-.close {
-  background: none;
-  border: 0;
-  font-size: 24px;
-  cursor: pointer;
-  transition: 0.3s;
-  padding: 0 8px;
-}
-
-.close:hover {
-  scale: 1.1;
-}
-
-.modal section {
-  padding: 8px 24px;
-}
-
-.modal label {
-  display: block;
-  margin-top: 20px;
-}
-
-.modal footer {
-  text-align: left;
-  padding: 24px;
-}
-
-.remove {
-  background: none;
-  border: 0;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.remove:hover {
-  scale: 1.2;
 }
