@@ -18,6 +18,7 @@ app.post("/login", async (req, res) => {
         return res.status(403).send("email or password is incorrect");
     }
 
+    // שמירת היוזר בסשיין
     req.session.user = user;
     res.send(user);
 });
@@ -40,4 +41,10 @@ app.post("/signup", async (req, res) => {
     const newUser = await user.save();
 
     res.send(newUser);
+});
+
+app.get("/logout", (req, res) => {
+    delete req.session.user;
+
+    res.end();
 });
