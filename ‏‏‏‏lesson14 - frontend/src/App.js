@@ -11,20 +11,22 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(null);
 
-    useEffect(async () => {
-        setLoading(true);
+    useEffect(() => {
+        (async () => {
+            setLoading(true);
         
-        const res = await fetch("http://localhost:8989/login", {
-            credentials: 'include',
-        });
+            const res = await fetch("http://localhost:8989/login", {
+                credentials: 'include',
+            });
 
-        if (res.ok) {
-            setUser(await res.json());
-        } else {
-            setUser();
-        }
+            if (res.ok) {
+                setUser(await res.json());
+            } else {
+                setUser();
+            }
 
-        setLoading(false);
+            setLoading(false);
+        })()
     }, []);
 
     return (
