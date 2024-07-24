@@ -43,6 +43,14 @@ app.post("/signup", async (req, res) => {
     res.send(newUser);
 });
 
+app.get("/login", async (req, res) => {
+    if (req.session.user) {
+        res.send(req.session.user);
+    } else {
+        return res.status(401).send("user is not logged in");
+    }
+});
+
 app.get("/logout", (req, res) => {
     delete req.session.user;
 
