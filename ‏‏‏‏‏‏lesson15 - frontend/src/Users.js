@@ -7,6 +7,9 @@ export default function Users() {
         (async () => {
             const res = await fetch("http://localhost:8989/users", {
                 credentials: 'include',
+                headers: {
+                    "Authorization": localStorage.getItem("token"),
+                }
             });
     
             setUsers(await res.json());

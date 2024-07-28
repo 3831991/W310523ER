@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import './User.css';
 import { useContext, useState } from 'react';
 import { GeneralContext } from '../App';
+import { jwtDecode } from 'jwt-decode';
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -26,8 +26,10 @@ export default function Login() {
         });
 
         if (res.ok) {
-            const user = await res.json();
+            const token = await res.text();
+            localStorage.setItem('token', token);
 
+            const user = jwtDecode(token);
             setUser(user);
         } else {
             setLoginError(await res.text());
