@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import { getUser } from './guard.mjs';
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/full-stack-W310523ER');
@@ -22,6 +23,12 @@ app.use(cors({
 
 app.listen(8989, () => {
     console.log('listening on port 8989');
+});
+
+app.use((req, res, next) => {
+    const user = getUser(req);
+    console.log(user._id);
+    next();
 });
 
 app.get('/', (req, res) => {

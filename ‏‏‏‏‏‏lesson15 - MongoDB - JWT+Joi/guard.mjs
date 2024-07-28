@@ -10,3 +10,17 @@ export const guard = (req, res, next) => {
         }
     });
 }
+
+export const getUser = req => {
+    if (!req.headers.authorization) {
+        return null;
+    }
+
+    const user = jwt.decode(req.headers.authorization, JWT_SECRET);
+
+    if (!user) {
+        return null;
+    }
+
+    return user;
+}
