@@ -4,6 +4,7 @@ import Router from './Router';
 import Loader from './Loader';
 import Login from './auth/Login';
 import Logout from './auth/Logout';
+import { jwtDecode } from 'jwt-decode';
 
 export const GeneralContext = createContext();
 
@@ -12,21 +13,14 @@ function App() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        (async () => {
-            setLoading(true);
-        
-            const res = await fetch("http://localhost:8989/login", {
-                credentials: 'include',
-            });
+        const token = localStorage.getItem('token');
 
-            if (res.ok) {
-                setUser(await res.json());
-            } else {
-                setUser();
-            }
-
-            setLoading(false);
-        })()
+        if (token) {
+            const user = jwtDecode(token);
+            setUser(user);
+        } else {
+            setUser();
+        }
     }, []);
 
     return (

@@ -5,18 +5,12 @@ import { GeneralContext } from '../App';
 
 export default function Logout() {
     const navigate = useNavigate();
-    const { setLoading, setUser, user } = useContext(GeneralContext);
+    const { setUser, user } = useContext(GeneralContext);
 
-    const logout = async () => {
-        setLoading(true);
-
-        await fetch("http://localhost:8989/logout", {
-            credentials: 'include',
-        });
-
+    const logout = () => {
+        localStorage.removeItem('token');
         setUser();
         navigate('/');
-        setLoading(false);
     }
 
     return (
