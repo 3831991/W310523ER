@@ -1,11 +1,18 @@
 import { app } from "../../app.mjs";
 import { JWT_SECRET } from "../../config.mjs";
+import { UserLogin, UserSignup } from "./users.joi.mjs";
 import { User } from "./users.model.mjs";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
+
+    const validate = UserLogin.validate({ email, password });
+
+    if (validate.error) {
+        return res.status(403).send(validate.error.details[0].message);
+    }
 
     const user = await User.findOne({ email });
 
@@ -36,6 +43,12 @@ app.post("/login", async (req, res) => {
 
 app.post("/signup", async (req, res) => {
     const { firstName, lastName, email, phone, password } = req.body;
+
+    const validate = UserSignup.validate(req.body, { allowUnknown: true });
+
+    if (validate.error) {
+        return res.status(403).send(validate.error.details[0].message);
+    }
 
     if (await User.findOne({ email })) {
         return res.status(403).send("Already exists");
