@@ -23,7 +23,10 @@ const schema = new Schema({
     address: Address,
     image: Image,
     web: String,
-    likes: [String],
+    likes: {
+        type: [Schema.Types.ObjectId],
+        default: [],
+    },
     user_id: {
         type: Schema.Types.ObjectId,
         required: true,
