@@ -3,7 +3,7 @@ import { guard } from "../../guard.mjs";
 import { User } from "./users.model.mjs";
 
 app.get("/users", guard, async (req, res) => {
-    res.send(await User.find());
+    res.send(await User.find({ isDeleted: { $ne: true } }));
 });
 
 app.get("/users/:id", guard, async (req, res) => {
@@ -48,7 +48,7 @@ app.put("/users/:id", guard, async (req, res) => {
 });
 
 app.delete("/users/:id", guard, async (req, res) => {
-    await User.findByIdAndDelete(req.params.id);
+    await User.findByIdAndUpdate(req.params.id, { isDeleted: true });
     res.end();
 });
 

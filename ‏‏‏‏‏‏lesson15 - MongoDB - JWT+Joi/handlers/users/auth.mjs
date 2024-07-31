@@ -14,7 +14,7 @@ app.post("/login", async (req, res) => {
         return res.status(403).send(validate.error.details[0].message);
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, isDeleted: { $ne: true } });
 
     if (!user) {
         return res.status(403).send("email or password is incorrect");
