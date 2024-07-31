@@ -2,6 +2,7 @@ import './User.css';
 import { useContext, useState } from 'react';
 import { GeneralContext } from '../App';
 import { jwtDecode } from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -71,9 +72,9 @@ export default function Login() {
                 </form>
             </div>
 
-            {/* <p className="signup">
+            <p className="signup">
                 <Link to="/signup">להרשמה לחץ כאן</Link>
-            </p> */}
+            </p>
         </>
     )
 }

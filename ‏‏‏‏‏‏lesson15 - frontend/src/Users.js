@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function Users() {
     const [users, setUsers] = useState([]);
-    const [isModal, setIsModal] = useState(true);
+    const [isModal, setIsModal] = useState();
     const [newUser, setNewUser] = useState({
 
     });

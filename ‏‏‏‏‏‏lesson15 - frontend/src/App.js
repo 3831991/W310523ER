@@ -1,8 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import './App.css';
-import Router from './Router';
+import { Router, RouterLogin } from './Router';
 import Loader from './Loader';
-import Login from './auth/Login';
 import Logout from './auth/Logout';
 import { jwtDecode } from 'jwt-decode';
 
@@ -29,7 +28,7 @@ function App() {
                 user !== null &&
                 <div className="App">
                     {user && <Logout />}
-                    {user ? <Router /> : <Login />}
+                    {user ? <Router /> : <RouterLogin />}
                 </div>
             }
             {loading && <Loader />}
