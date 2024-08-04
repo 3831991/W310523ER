@@ -36,7 +36,7 @@ app.post("/login", async (req, res) => {
         _id: user._id,
         lastName: user.lastName,
         firstName: user.firstName,
-        isBusiness: user.isBussiness,
+        isBussiness: user.isBussiness,
         isAdmin: user.isAdmin,
     }, JWT_SECRET, { expiresIn: '1h' });
 
@@ -44,7 +44,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-    const { firstName, lastName, email, phone, password } = req.body;
+    const { firstName, lastName, email, phone, password, isBussiness } = req.body;
 
     const validate = UserSignup.validate(req.body, { allowUnknown: true });
 
@@ -61,6 +61,7 @@ app.post("/signup", async (req, res) => {
         lastName,
         email,
         phone,
+        isBussiness,
         password: await bcrypt.hash(password, 10),
     });
 

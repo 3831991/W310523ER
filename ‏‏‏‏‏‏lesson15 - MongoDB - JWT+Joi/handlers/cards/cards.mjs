@@ -7,7 +7,7 @@ app.get("/cards", guard, async (req, res) => {
 });
 
 app.get("/cards/my-cards", guard, bussinessGuard, async (req, res) => {
-    const user = getUser();
+    const user = getUser(req);
     res.send(await Card.find({ user_id: user._id }));
 });
 

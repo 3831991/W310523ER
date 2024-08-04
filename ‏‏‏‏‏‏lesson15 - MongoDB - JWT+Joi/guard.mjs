@@ -12,8 +12,8 @@ export const guard = (req, res, next) => {
 }
 
 export const bussinessGuard = (req, res, next) => {
-    const user = getUser();
-
+    const user = getUser(req);
+console.log(user)
     if (user?.isBussiness || user?.isAdmin) {
         next();
     } else {
