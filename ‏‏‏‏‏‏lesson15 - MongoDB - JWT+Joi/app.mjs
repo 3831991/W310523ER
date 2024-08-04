@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import { getUser } from './guard.mjs';
+import chalk from 'chalk';
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/full-stack-W310523ER');
@@ -28,6 +29,10 @@ app.listen(8989, () => {
 app.use((req, res, next) => {
     const user = getUser(req);
     console.log(user?._id);
+
+    console.log(chalk.bgBlue(req.method));
+    console.log(chalk.green(req.url));
+
     next();
 });
 
