@@ -1,10 +1,8 @@
 export const initialData = {
     "users": [
         {
-            "name": {
-                "first": "regular",
-                "last": "user"
-            },
+            "firstName": "regular",
+            "lastName": "user",
             "isBusiness": false,
             "phone": "050-0000000",
             "email": "regular@gmail.com",
@@ -21,10 +19,8 @@ export const initialData = {
             }
         },
         {
-            "name": {
-                "first": "business",
-                "last": "user"
-            },
+            "firstName": "business",
+            "lastName": "user",
             "isBusiness": true,
             "phone": "050-0000000",
             "email": "business@gmail.com",
@@ -41,10 +37,8 @@ export const initialData = {
             }
         },
         {
-            "name": {
-                "first": "admin",
-                "last": "user"
-            },
+            "firstName": "admin",
+            "lastName": "user",
             "isBusiness": true,
             "isAdmin": true,
             "phone": "050-0000000",
