@@ -1,6 +1,7 @@
 import { Card } from "../handlers/cards/cards.model.mjs";
 import { User } from "../handlers/users/users.model.mjs";
 import { initialData as data } from './initial-data.mjs';
+import bcrypt from 'bcrypt';
 
 (async () => {
     const userAmount = await User.find().countDocuments();
