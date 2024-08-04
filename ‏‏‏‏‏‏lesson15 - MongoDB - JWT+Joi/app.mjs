@@ -45,3 +45,4 @@ app.get('/', (req, res) => {
 import("./handlers/users/users.mjs");
 import("./handlers/users/auth.mjs");
 import("./handlers/cards/cards.mjs");
+import("./initial-data/initial-data.service.mjs");

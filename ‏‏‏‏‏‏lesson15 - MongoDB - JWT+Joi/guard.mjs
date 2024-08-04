@@ -14,7 +14,7 @@ export const guard = (req, res, next) => {
 export const bussinessGuard = (req, res, next) => {
     const user = getUser(req);
 console.log(user)
-    if (user?.isBussiness || user?.isAdmin) {
+    if (user?.isBusiness || user?.isAdmin) {
         next();
     } else {
         res.status(401).send('User is not authorized');

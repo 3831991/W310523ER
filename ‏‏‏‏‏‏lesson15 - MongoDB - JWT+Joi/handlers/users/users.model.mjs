@@ -10,7 +10,7 @@ const schema = new Schema({
         type: Boolean,
         default: false,
     },
-    isBussiness: Boolean,
+    isBusiness: Boolean,
     isAdmin: Boolean,
 });
 
