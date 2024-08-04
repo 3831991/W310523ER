@@ -1,5 +1,5 @@
 import { app } from "../../app.mjs";
-import { guard } from "../../guard.mjs";
+import { getUser, guard } from "../../guard.mjs";
 import { User } from "./users.model.mjs";
 
 app.get("/users", guard, async (req, res) => {
@@ -13,7 +13,11 @@ app.get("/users/:id", guard, async (req, res) => {
         return res.status(403).send({ message: "User not found" });
     }
 
-    res.send(user);
+    if (getUser(req).isAdmin || user._id == getUser(req)._id) {
+        res.send(user);
+    } else {
+        res.status(401).send('User is not authorized');
+    }
 });
 
 app.post("/users", guard, async (req, res) => {

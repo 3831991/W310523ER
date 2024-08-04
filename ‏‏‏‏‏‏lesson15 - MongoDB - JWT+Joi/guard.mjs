@@ -13,7 +13,7 @@ export const guard = (req, res, next) => {
 
 export const bussinessGuard = (req, res, next) => {
     const user = getUser(req);
-console.log(user)
+
     if (user?.isBusiness || user?.isAdmin) {
         next();
     } else {
