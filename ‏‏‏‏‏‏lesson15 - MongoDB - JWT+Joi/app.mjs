@@ -28,7 +28,7 @@ app.listen(8989, () => {
 
 app.use((req, res, next) => {
     const user = getUser(req);
-    console.log(user?._id);
+    console.log(chalk.red("userId: ") + chalk.blue.bold(user?._id));
 
     console.log(chalk.bgBlue(req.method));
     console.log(chalk.green(req.url));
