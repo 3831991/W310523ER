@@ -11,6 +11,16 @@ export const guard = (req, res, next) => {
     });
 }
 
+export const bussinessGuard = (req, res, next) => {
+    const user = getUser();
+
+    if (user.isBussiness || user.isAdmin) {
+        next();
+    } else {
+        res.status(401).send('User is not authorized');
+    }
+}
+
 export const getUser = req => {
     if (!req.headers.authorization) {
         return null;

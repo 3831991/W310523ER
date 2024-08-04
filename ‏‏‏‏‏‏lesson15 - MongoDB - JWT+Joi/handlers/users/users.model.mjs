@@ -10,6 +10,8 @@ const schema = new Schema({
         type: Boolean,
         default: false,
     },
+    isBussiness: Boolean,
+    isAdmin: Boolean,
 });
 
 export const User = mongoose.model("users", schema);

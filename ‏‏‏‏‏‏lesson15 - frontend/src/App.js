@@ -16,7 +16,16 @@ function App() {
 
         if (token) {
             const user = jwtDecode(token);
-            setUser(user);
+            
+            const now = new Date();
+            const exp = new Date(user.exp * 1000);
+
+            if (exp > now) {
+                setUser(user);
+            } else {
+                setUser();
+                localStorage.removeItem("token");
+            }
         } else {
             setUser();
         }
