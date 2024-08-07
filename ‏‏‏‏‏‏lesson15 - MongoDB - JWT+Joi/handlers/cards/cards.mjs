@@ -2,7 +2,7 @@ import { app } from "../../app.mjs";
 import { bussinessGuard, getUser, guard } from "../../guard.mjs";
 import { Card } from "./cards.model.mjs";
 
-app.get("/cards", guard, async (req, res) => {
+app.get("/cards", async (req, res) => {
     res.send(await Card.find());
 });
 
