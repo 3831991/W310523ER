@@ -1,9 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import { getUser } from './guard.mjs';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
+import moment from 'moment';
 
 dotenv.config();
 
@@ -18,6 +19,23 @@ export const app = express();
 
 app.use(express.json());
 
+// כל הלוג בשורה אחת (Morgan)
+// app.use(morgan(':method :url :status :date[iso] :response-time ms'));
+
+// לוג מותאם אישית (Morgan)
+// שילבנו כאן לוג צבעוני (Chalk)
+app.use(morgan((tokens, req, res) => {
+    const status = tokens.status(req, res);
+
+    return [
+        chalk.blue(tokens.method(req, res)),
+        chalk.green(tokens.url(req, res)),
+        status >= 200 && status < 400 ? chalk.bgGreen(tokens.status(req, res)) : chalk.bgRed(tokens.status(req, res)),
+        chalk.gray(moment().format("YYYY-MM-DD HH:mm")),
+        chalk.bgBlack(tokens['response-time'](req, res), 'ms'),
+    ].join(' ')
+}));
+
 app.use(express.static("public"));
 
 app.use(cors({
@@ -31,15 +49,16 @@ app.listen(process.env.PORT, () => {
     console.log('listening on port 8989');
 });
 
-app.use((req, res, next) => {
-    const user = getUser(req);
-    console.log(chalk.red("userId: ") + chalk.blue.bold(user?._id));
+// שימוש בספרייה Chalk
+// app.use((req, res, next) => {
+//     const user = getUser(req);
+//     console.log(chalk.red("userId: ") + chalk.blue.bold(user?._id));
 
-    console.log(chalk.bgBlue(req.method));
-    console.log(chalk.green(req.url));
+//     console.log(chalk.bgBlue(req.method));
+//     console.log(chalk.green(req.url));
 
-    next();
-});
+//     next();
+// });
 
 app.get('/', (req, res) => {
     res.send({
@@ -47,6 +66,8 @@ app.get('/', (req, res) => {
     });
 });
 
+// שמנו את זה בפונקציה אסינכורנית בכדי לייבא בצורה סינכרונית
+// ע"מ שהקובץ של שגיאה 404 ייטען רק לאחר שיבדוק את כל הניתובים
 (async () => {
     await import("./handlers/users/users.mjs");
     await import("./handlers/users/auth.mjs");
@@ -54,7 +75,7 @@ app.get('/', (req, res) => {
     await import("./initial-data/initial-data.service.mjs");
 
     app.get("*", (req, res) => {
-        res.writeHead(404, {'Content-Type': 'text/html'});
+        res.writeHead(404, { 'Content-Type': 'text/html' });
         res.write(`<meta charset="UTF-8">`);
         res.write(`
             <style>
