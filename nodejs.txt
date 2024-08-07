@@ -1,7 +1,7 @@
 npm init -y
 
 // כל ההתקנות ביחד
-npm install express cors mongoose moment dotenv fs --save
+npm install express cors mongoose moment dotenv morgan chalk joi jsonwebtoken fs --save
 
 // התקנה חד"פ גלובלית
 npm i -g nodemon -D
