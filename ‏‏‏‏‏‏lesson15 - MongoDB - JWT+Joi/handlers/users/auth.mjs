@@ -1,5 +1,4 @@
 import { app } from "../../app.mjs";
-import { JWT_SECRET } from "../../config.mjs";
 import { UserLogin, UserSignup } from "./users.joi.mjs";
 import { User } from "./users.model.mjs";
 import bcrypt from 'bcrypt';
@@ -38,7 +37,7 @@ app.post("/login", async (req, res) => {
         firstName: user.firstName,
         isBusiness: user.isBusiness,
         isAdmin: user.isAdmin,
-    }, JWT_SECRET, { expiresIn: '1h' });
+    }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.send(token);
 });

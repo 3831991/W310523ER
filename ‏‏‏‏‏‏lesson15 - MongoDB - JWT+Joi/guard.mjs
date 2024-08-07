@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from './config.mjs';
 
 export const guard = (req, res, next) => {
-    jwt.verify(req.headers.authorization, JWT_SECRET, (err, data) => {
+    jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, data) => {
         if (err) {
             res.status(401).send('User is not authorized');
         } else {
@@ -26,7 +25,7 @@ export const getUser = req => {
         return null;
     }
 
-    const user = jwt.decode(req.headers.authorization, JWT_SECRET);
+    const user = jwt.decode(req.headers.authorization, process.env.JWT_SECRET);
 
     if (!user) {
         return null;

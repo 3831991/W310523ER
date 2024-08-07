@@ -3,9 +3,12 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import { getUser } from './guard.mjs';
 import chalk from 'chalk';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/full-stack-W310523ER');
+    await mongoose.connect(process.env.MONGO_DB_URL);
     console.log('mongodb connection established on port 27017');
 }
 
@@ -24,7 +27,7 @@ app.use(cors({
     allowedHeaders: 'Content-Type, Accept, Authorization',
 }));
 
-app.listen(8989, () => {
+app.listen(process.env.PORT, () => {
     console.log('listening on port 8989');
 });
 
