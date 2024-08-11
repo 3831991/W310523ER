@@ -26,3 +26,7 @@ body {
 #board>div:not(.showed) {
     background-image: none !important;
 }
+
+.found {
+    visibility: hidden;
+}
