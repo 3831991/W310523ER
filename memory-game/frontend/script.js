@@ -16,6 +16,10 @@ const cards = [];
         const div = document.createElement("div");
         div.style.backgroundImage = `url("/images/${c.image}")`;
         board.appendChild(div);
+
+        div.addEventListener("click", () => {
+            div.classList.add("showed");
+        });
     });
 })();
 
