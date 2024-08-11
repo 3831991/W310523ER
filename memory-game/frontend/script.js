@@ -8,5 +8,8 @@ const board = document.getElementById('board');
         const div = document.createElement("div");
         div.style.backgroundImage = `url("/images/${image}")`;
         board.appendChild(div);
+
+        const div2 = div.cloneNode();
+        board.appendChild(div2);
     });
 })();
