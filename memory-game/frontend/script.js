@@ -22,6 +22,16 @@ let isFirstPlayer = true;
         board.appendChild(div);
         c.div = div;
 
+        div.addEventListener("mouseover", () => {
+            cards.filter(x => x.i == c.i).forEach(card => {
+                card.div.classList.add("cheat");
+            });
+        });
+
+        div.addEventListener("mouseout", () => {
+            cards.forEach(card => card.div.classList.remove("cheat"));
+        });
+
         div.addEventListener("click", () => {
             if (c.showed) {
                 return;

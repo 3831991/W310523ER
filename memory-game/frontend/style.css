@@ -30,3 +30,7 @@ body {
 .found {
     visibility: hidden;
 }
+
+.cheat {
+    background-color: #1b5d61 !important;
+}
