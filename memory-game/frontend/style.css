@@ -57,6 +57,9 @@ header>div {
 
 header>div:not(:nth-child(2)) {
     background-color: #cf8600;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 header h2 {
