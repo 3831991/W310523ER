@@ -2,6 +2,7 @@ let cards = [];
 let player1 = 0;
 let player2 = 0;
 let isFirstPlayer = true;
+let isCheat = false;
 
 function bind() {
     const p1 = document.getElementById('player1');
@@ -43,6 +44,8 @@ async function newGame() {
         c.div = div;
 
         div.addEventListener("mouseover", () => {
+            if (!isCheat) return;
+
             cards.filter(x => x.i == c.i).forEach(card => {
                 card.div.classList.add("cheat");
             });
