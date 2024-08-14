@@ -1,10 +1,30 @@
-const cards = [];
+let cards = [];
 let player1 = 0;
 let player2 = 0;
 let isFirstPlayer = true;
 
-(async () => {
+function bind() {
+    const p1 = document.getElementById('player1');
+    const p2 = document.getElementById('player2');
+
+    p1.querySelector("p").innerText = player1;
+    p2.querySelector("p").innerText = player2;
+
+    if (isFirstPlayer) {
+        p1.classList.add("current");
+        p2.classList.remove("current");
+    } else {
+        p2.classList.add("current");
+        p1.classList.remove("current");
+    }
+}
+
+async function newGame() {
     const board = document.getElementById('board');
+    board.innerHTML = '';
+    cards = [];
+    player1 = 0;
+    player2 = 0;
 
     const res = await fetch("/images");
     const images = await res.json();
@@ -68,6 +88,8 @@ let isFirstPlayer = true;
                         } else {
                             player2++;
                         }
+
+                        bind();
                     }, 1500);
                 } else {
                     setTimeout(() => {
@@ -78,9 +100,14 @@ let isFirstPlayer = true;
                         current.showed = false;
                         
                         isFirstPlayer = !isFirstPlayer;
+                        bind();
                     }, 1500);
                 }
             }
         });
     });
-})();
+
+    bind();
+}
+
+newGame();
