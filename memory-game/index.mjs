@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 export const app = express();
 
@@ -20,7 +18,7 @@ app.listen(1234, () => {
 });
 
 app.get("/images", (req, res) => {
-    fs.readdir(`./images`, (err, files) => {
+    fs.readdir(`./frontend/images`, (err, files) => {
         if (err) {
             console.log(err);
             return res.end();
@@ -28,12 +26,4 @@ app.get("/images", (req, res) => {
 
         res.send(files);
     });
-});
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.get("/images/:fileName", (req, res) => {
-    const url = `${__dirname}/images/${req.params.fileName}`;
-    res.sendFile(path.resolve(url));
 });
